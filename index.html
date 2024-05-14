@@ -6,11 +6,16 @@
   </head>
   <body>
     <h1>ようこそ</h1>
+    <h2 id="app"></h2>
     <script type="module">
-      import init, { greet } from "./pkg/hello_wasm.js";
-      init().then(() => {
-        greet("WebAssembly");
-      });
+      import init, { say, generate } from "./pkg/hello_wasm.js";
+      async function run() {
+        await init();
+        let res = generate();
+        document.querySelector('#app').textContent = res;
+        // say();
+      }
+      run();
     </script>
   </body>
 </html>
